@@ -3,13 +3,14 @@ import msal
 
 from shared.config import MSAL_CLIENT_ID, MSAL_CLIENT_SECRET, MSAL_TENANT_ID
 from shared.session import decrypt_session
+from shared.cookies import get_cookie
 
 
 AUTHORITY = f"https://login.microsoftonline.com/{MSAL_TENANT_ID}"
 
 
 def main(req: HttpRequest) -> HttpResponse:
-    session_cookie = req.cookies.get("session")
+    session_cookie = get_cookie(req, "session")
 
     if session_cookie:
         try:

@@ -3,6 +3,6 @@
 # azure-monitor-opentelemetry 
 
 azure-functions
-msal
+msal>=1.33.0
 cryptography
 httpx
