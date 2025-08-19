@@ -4,6 +4,9 @@
     "exclude": ["/assets/*", "/api/*"]
   },
   "apiLocation": "api",
+  "platform": {
+    "apiRuntime": "python:3.10"
+  },
   "mimeTypes": {
     ".js": "text/javascript",
     ".css": "text/css"
