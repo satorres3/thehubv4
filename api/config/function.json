@@ -7,7 +7,7 @@
       "direction": "in",
       "name": "req",
       "methods": ["get"],
-      "route": "user/profile"
+      "route": "config"
     },
     {
       "type": "http",
