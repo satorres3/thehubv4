@@ -17,6 +17,7 @@ from azure.functions import HttpRequest, HttpResponse
 
 from ..shared.config import MSAL_CLIENT_ID, MSAL_CLIENT_SECRET, MSAL_TENANT_ID
 from ..shared.session import decrypt_session
+from ..shared.cookies import get_cookie
 
 
 AUTHORITY = f"https://login.microsoftonline.com/{MSAL_TENANT_ID}"
@@ -36,7 +37,7 @@ async def main(req: HttpRequest) -> HttpResponse:
     if not path:
         return HttpResponse("Missing Graph path", status_code=400)
 
-    session_token: Optional[str] = req.cookies.get("session")
+    session_token: Optional[str] = get_cookie(req, "session")
     if not session_token:
         return HttpResponse("Unauthorized", status_code=401)
 
