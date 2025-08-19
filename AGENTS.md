@@ -17,6 +17,17 @@ npx tsc --noEmit
 
 **Expected Result:** The command should complete with no errors reported. If errors are found, they must be resolved before proceeding.
 
+### Python Static Analysis
+
+Run a basic syntax check on all Python files to catch runtime errors early.
+
+**Command:**
+```bash
+python -m py_compile $(git ls-files '*.py')
+```
+
+**Expected Result:** The command returns without output. Any syntax errors must be fixed before committing.
+
 ---
 
 ## 2. Security Validation Checklist
@@ -54,3 +65,7 @@ Ensure that all references to local files are correct.
 -   **[ ] Page Partials**: If a new page is added, confirm that the HTML file exists in `src/pages/` and that the key used in `showPage('pageKey')` correctly corresponds to the filename.
 -   **[ ] Modal Partials**: Confirm that any HTML file loaded for a modal exists in `src/modals/`.
 -   **[ ] Image/Asset Paths**: While this project currently uses inline SVGs and remote URLs, be mindful of any future static assets and ensure their paths are correct.
+
+## 5. Dependency Management
+
+-   **[ ] `requirements.txt` Updated**: Whenever adding or removing Python packages, ensure `api/requirements.txt` reflects the change so deployments are reproducible.

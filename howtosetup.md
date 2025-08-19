@@ -10,7 +10,8 @@ Before you begin, ensure you have the following software installed:
 
 -   **Node.js**: Version `20.0.0` or higher. You can download it from [nodejs.org](https://nodejs.org/).
 -   **npm**: This is included with Node.js.
--   **Azure Functions Core Tools**: This is required to run the backend server locally. Install it globally using npm:
+-   **Python**: Version `3.10` or higher with `pip`.
+-   **Azure Functions Core Tools**: Required to run the backend server locally. Install it globally using npm:
     ```bash
     npm install -g azure-functions-core-tools@4 --unsafe-perm true
     ```
@@ -27,10 +28,12 @@ Clone the repository and install the dependencies for both the frontend and back
     npm install
     ```
 
-2.  **Install Backend Dependencies** (navigate into the `api` directory):
+2.  **Install Backend Dependencies** (navigate into the `api` directory and create a virtual environment):
     ```bash
     cd api
-    npm install
+    python -m venv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt
     ```
 
 ---
@@ -66,7 +69,7 @@ Now, use the values you just created to update the `api/local.settings.json` fil
   "IsEncrypted": false,
   "Values": {
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
-    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "FUNCTIONS_WORKER_RUNTIME": "python",
     "AzureWebJobsFeatureFlags": "EnableWorkerIndexing",
     "APP_URI": "http://localhost:5173",
     "MSAL_CLIENT_ID": "Paste your Application (client) ID here",
@@ -90,13 +93,14 @@ To run the application, you need to start both the backend and frontend servers 
 
 ### Terminal 1: Start the Backend (API)
 
-1.  Navigate to the `api` directory:
+1.  Navigate to the `api` directory and activate the virtual environment:
     ```bash
     cd api
+    source .venv/bin/activate
     ```
 2.  Start the Azure Functions server:
     ```bash
-    npm run start
+    func start
     ```
     You should see output indicating that the Functions host has started and is listening for requests, typically on port `7071`.
 

@@ -27,10 +27,11 @@ The primary goal of this test plan is to validate the successful migration of th
 ## 3. Prerequisites
 
 ### For Local Testing:
-1.  **Backend Running**: The Azure Functions API is running locally via `func start`.
-2.  **Frontend Running**: The Vite development server is running via `npm run dev`.
-3.  **Configuration**: The `api/local.settings.json` file is populated with valid credentials for MSAL and Gemini.
-4.  **Tools**: Browser with developer tools (Network, Application, and Console tabs).
+1.  **Backend Dependencies Installed**: From the `api` folder, create and activate a virtual environment and run `pip install -r requirements.txt`.
+2.  **Backend Running**: The Azure Functions API is running locally via `func start`.
+3.  **Frontend Running**: The Vite development server is running via `npm run dev`.
+4.  **Configuration**: The `api/local.settings.json` file is populated with valid credentials for MSAL and Gemini.
+5.  **Tools**: Browser with developer tools (Network, Application, and Console tabs).
 
 ### For Azure Testing:
 1.  **Deployment**: The latest version of the application has been successfully deployed to an Azure Static Web App instance.
