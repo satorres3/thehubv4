@@ -4,7 +4,7 @@
 
 Hub Nice State is a sophisticated, workspace-based AI portal designed for organizations to create, manage, and deploy specialized AI assistants. The platform allows administrators to build isolated "workspaces," each tailored to a specific department, product, or function (e.g., Data Security, Sales, HR).
 
-The application is architected as a modern Static Web App, featuring a fast, dynamic frontend built with TypeScript and a secure, serverless backend that handles authentication and all communication with external AI and Microsoft Graph services. This **Backend for Frontend (BFF)** pattern ensures that no secrets or sensitive tokens are ever exposed to the browser, providing enterprise-grade security.
+The application is architected as a modern Static Web App, featuring a fast, dynamic frontend built with TypeScript and a secure Azure Functions backend written in Python that handles authentication and all communication with external AI and Microsoft Graph services. This **Backend for Frontend (BFF)** pattern ensures that no secrets or sensitive tokens are ever exposed to the browser, providing enterprise-grade security.
 
 ## Key Features
 
@@ -16,3 +16,9 @@ The application is architected as a modern Static Web App, featuring a fast, dyn
     - **Personas & Quick Questions**: Define the AI's personality and pre-populate the chat with relevant, context-aware starter questions.
 - **Multi-Model Support**: Manage a central repository of AI models from various providers (e.g., Google Gemini, Groq). Administrators can assign specific models to each workspace.
 - **AI-Powered Configuration**: The application uses AI to assist administrators in setting up new workspaces by suggesting descriptions, personas, quick questions, and even custom functions based on a simple name and type.
+
+## Deployment
+
+The project pairs a Vite-built TypeScript frontend with an Azure Functions backend powered by Python. A GitHub Actions workflow installs dependencies, builds the frontend, packages the Python API, and deploys everything to Azure Static Web Apps.
+
+For step-by-step instructions, see the [Local Development Setup Guide](./howtosetup.md) and the [Azure Functions Deployment Guide](./api/getting_started.md).
