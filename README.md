@@ -21,4 +21,4 @@ The application is architected as a modern Static Web App, featuring a fast, dyn
 
 The project pairs a Vite-built TypeScript frontend with an Azure Functions backend powered by Python. A GitHub Actions workflow installs dependencies, builds the frontend, packages the Python API, and deploys everything to Azure Static Web Apps.
 
-For step-by-step instructions, see the [Local Development Setup Guide](./howtosetup.md) and the [Azure Functions Deployment Guide](./api/getting_started.md).
+Before provisioning any Azure resources, run the application locally to verify functionality. For local setup and testing, see the [Local Development Setup Guide](./howtosetup.md). When you're ready to deploy, follow the step-by-step instructions in the [Azure Functions Deployment Guide](./api/getting_started.md).

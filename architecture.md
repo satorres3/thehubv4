@@ -4,7 +4,7 @@
 
 This document provides a technical overview of the "Hub Nice State" application. It outlines the core architecture, data structures, and operational flow to facilitate understanding and modification of the codebase.
 
-The application is a Static Web App (SPA) built with TypeScript, HTML, and CSS, utilizing native browser features and ES modules. It does **not** use a frontend framework like React or Vue.
+The application is a Static Web App (SPA) built with TypeScript, HTML, and CSS, utilizing native browser features and ES modules. It does **not** use a frontend framework like React or Vue. Server-side logic lives in an Azure Functions backend written in Python.
 
 ## Development Roadmap
 
@@ -77,13 +77,14 @@ To enable communication, `vite.config.ts` is configured with a **proxy**. Any re
 
 - **`index.html`**: The main application shell. Contains the `<div id="root">` and `<main id="app-root">`.
 - **`index.tsx`**: The application entry point. Handles initialization, binds the main event listener, and manages the top-level application flow.
-- **`api/`**: The server-side Azure Functions project. Contains all backend logic.
-    - **`src/functions/`**: Holds individual serverless function endpoints (e.g., `authLogin.ts`, `userProfile.ts`, `geminiProxy.ts`).
-    - **`src/shared/`**: Contains shared code for the backend:
-        - `config.ts`: Loads and validates all server-side environment variables.
-        - `msal.ts`: Initializes and exports a singleton MSAL client instance.
-        - `session.ts`: Handles the encryption, decryption, and creation of secure session cookies.
-        - `utils.ts`: Helper functions, such as `getRequestOrigin` for proxy awareness.
+- **`api/`**: The server-side Azure Functions project implemented in Python.
+    - **Function Directories**: Each HTTP-triggered endpoint is a folder containing an `__init__.py` file. Key examples include `authLogin/`, `authCallback/`, `authLogout/`, `gemini/`, `graphProxy/`, `knowledgeList/`, `knowledgeUpload/`, `knowledgeDelete/`, `publicConfig/`, and `userProfile/`.
+    - **`shared/`**: Shared Python modules used by multiple functions:
+        - `config.py`: Loads and validates all server-side environment variables.
+        - `msal_client.py`: Initializes and exports a singleton MSAL client instance.
+        - `session.py`: Handles the encryption, decryption, and creation of secure session cookies.
+        - `utils.py`: Helper functions, such as `get_request_origin` for proxy awareness.
+    - **`requirements.txt`**: Python dependencies for the function app.
     - **`local.settings.json`**: For local development, stores backend secrets. **This file should not be committed.**
 - **`src/`**: Client-side source code directory.
     - **`types.ts`**: Contains all TypeScript interfaces for the application's data structures (`Container`, `Branding`, `User`, etc.).
