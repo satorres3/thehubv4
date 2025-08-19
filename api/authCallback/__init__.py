@@ -3,6 +3,7 @@ import msal
 
 from shared.config import MSAL_CLIENT_ID, MSAL_CLIENT_SECRET, MSAL_TENANT_ID, APP_URI
 from shared.session import encrypt_session
+from shared.cookies import get_cookie
 
 
 AUTHORITY = f"https://login.microsoftonline.com/{MSAL_TENANT_ID}"
@@ -15,7 +16,7 @@ def _build_redirect_uri(req: HttpRequest) -> str:
 
 def main(req: HttpRequest) -> HttpResponse:
     code = req.params.get("code")
-    verifier = req.cookies.get("verifier")
+    verifier = get_cookie(req, "verifier")
     if not code or not verifier:
         return HttpResponse("Missing authentication parameters.", status_code=400)
 
